@@ -13,4 +13,10 @@ public class MoneyTest {
         Money dollars = new Money(1,Currency.getInstance("USD"));
         euros.subtract(dollars);
     }
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowException_WhenAddMissmatchedCurrencies() {
+        Money euros = new Money(1, Currency.getInstance("EUR"));
+        Money dollars = new Money(1, Currency.getInstance("USD"));
+        euros.add(dollars);
+    }
 }
