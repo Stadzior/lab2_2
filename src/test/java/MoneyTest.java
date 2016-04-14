@@ -1,8 +1,13 @@
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
+import java.math.BigDecimal;
 import java.util.Currency;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by Kamil on 2016-04-14.
@@ -27,5 +32,13 @@ public class MoneyTest {
     public void shouldThrowException_WhenAddMissmatchedCurrencies() {
 
         euros.add(dollars);
+    }
+    @Test
+    public void money_MultipliedByTwo_ShouldReturnFourThousands() {
+        Money accountBalance = new Money(new BigDecimal(2000.50),Currency.getInstance("EUR"));
+
+        accountBalance = accountBalance.multiplyBy(2);
+
+        assertThat(accountBalance.GetDenomination(), equalTo(new BigDecimal(4001.00)));
     }
 }

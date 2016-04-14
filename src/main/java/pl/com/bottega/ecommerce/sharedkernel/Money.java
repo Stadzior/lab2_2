@@ -28,6 +28,10 @@ public class Money {
 
 	private BigDecimal denomination;
 
+    public BigDecimal GetDenomination(){
+        return this.denomination;
+    }
+
 	private String currencyCode;
 
 	protected Money() {
