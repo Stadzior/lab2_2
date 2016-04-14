@@ -36,7 +36,7 @@ public class MoneyTest {
         euros.add(dollars);
     }
     @Test @Ignore
-    public void money_MultipliedByTwo_ShouldReturnFourThousands() {
+    public void ShouldReturnFourThousands_WhenMoneyMultipliedByTwo() {
         Money accountBalance = new Money(new BigDecimal(2000),Currency.getInstance("EUR"));
 
         accountBalance = accountBalance.multiplyBy(2);
