@@ -9,6 +9,6 @@ import pl.com.bottega.ecommerce.sharedkernel.Money;
 public class TaxPolicy implements ITaxPolicy {
     @Override
     public Tax calculateTax(ProductType productType, Money net) {
-        return new Tax()
+        return new Tax(net,"Tax: " + net.toString());
     }
 }
