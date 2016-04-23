@@ -41,6 +41,16 @@ public class BookKeeperTest {
         invoiceRequest.add(item);
         Invoice invoice = bookKeeper.issuance(invoiceRequest, taxPolicy);
         Money taxAmount = invoice.getItems().get(0).getTax().getAmount();
-        assertThat(taxAmount.GetDenomination().doubleValue(),equalTo(48.00));
+
+        assertThat(taxAmount.GetDenomination().doubleValue(), equalTo(48.00));
+    }
+    @Test
+    public void ShouldReturn448Gros_WhenStandardTaxPolicyIsPassed(){
+
+        invoiceRequest.add(item);
+        Invoice invoice = bookKeeper.issuance(invoiceRequest, taxPolicy);
+        Money gros = invoice.getItems().get(0).getGros();
+
+        assertThat(gros.GetDenomination().doubleValue(),equalTo(448.00));
     }
 }
