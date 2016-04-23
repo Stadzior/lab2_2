@@ -18,12 +18,16 @@ public class BookKeeperTest {
     InvoiceRequest invoiceRequest;
     BookKeeper bookKeeper;
     TaxPolicy taxPolicy;
+    ProductData data;
+    RequestItem item;
     @Before
     public void initialize(){
         client = new ClientData(Id.generate(),"Johnny Testowy");
         invoiceRequest = new InvoiceRequest(client);
         bookKeeper = new BookKeeper();
         taxPolicy = new TaxPolicy();
+        data = new ProductData(Id.generate(),new Money(400),"Test", ProductType.DRUG,new Date());
+        item = new RequestItem(data,5,new Money(400));
     }
     @Test
     public void ShouldReturnEmptyInvoice_WhenRequestIsEmpty(){
@@ -34,8 +38,6 @@ public class BookKeeperTest {
     @Test
     public void ShouldReturnTwelvePercentTax_WhenStandardTaxPolicyIsPassed(){
 
-        ProductData data = new ProductData(Id.generate(),new Money(400),"Test", ProductType.DRUG,new Date());
-        RequestItem item = new RequestItem(data,5,new Money(400));
         invoiceRequest.add(item);
         Invoice invoice = bookKeeper.issuance(invoiceRequest, taxPolicy);
         Money taxAmount = invoice.getItems().get(0).getTax().getAmount();
